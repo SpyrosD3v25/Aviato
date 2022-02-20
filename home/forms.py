@@ -9,7 +9,7 @@ class ProfileForm(forms.ModelForm):
 class BlogPostForm(forms.ModelForm):
     class Meta:
         model = BlogPost
-        fields = ('title', 'content', 'image', 'category')
+        fields = ('title', 'content', 'image', 'location','category', 'dhmos')
         
         category = forms.NullBooleanField()
 

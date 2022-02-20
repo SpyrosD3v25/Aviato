@@ -8,7 +8,8 @@ from django.views.generic import UpdateView
 from django.contrib import messages
 from .blur_faces import Blur
 from django.conf import settings
-
+from .send_mms import Send
+from .send_email import Send
 
 def blogs(request):
     posts = BlogPost.objects.all()
@@ -56,11 +57,15 @@ def add_blogs(request):
             absolute_url = '/home/spyros/blog-application-django (1)/home' + str(blogpost.image.url)
             blurOBJ.run(absolute_url)
 
-            print("***************************************************************")
-            print(blogpost.category)
+            #sendOBJ = Send(blogpost.category, blogpost.image, '+6987735000')
+            #sendOBJ.send_mms()
 
+            sendemailOBJ = Send()
+            sendemailOBJ.send_email(
+                "Φυσική Καταστροφή - φωτιές", 
+                blogpost.content, 
+                "dhmosxyzpyrosbestikh@gmail.com")
 
-            #blogpost.save()
             
             return render(request, "add_blogs.html",{'obj':obj, 'alert':alert})
     else:
