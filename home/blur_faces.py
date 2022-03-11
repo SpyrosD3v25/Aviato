@@ -13,8 +13,6 @@ class Blur:
       
 
     def run(self, img_path):
-        print("---------------------------------------------------HERE---------------------------------------------------")
-        print(img_path)
         image = cv.imread(img_path)          
         gray_image = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
         harr_cascade = cv.CascadeClassifier(cv.data.haarcascades + 'haarcascade_frontalface_default.xml')

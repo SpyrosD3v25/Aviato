@@ -14,6 +14,7 @@ CATEGORY_CHOICES = (
     ("8", "Δολιοφθορές - Καταστροφή Δημόσιας Περιουσίας"),
     ("9", "Δολιοφθορές - Ξυλοδαρμός"),
     ("10", "Δολιοφθορές - Κλοπή"),
+    ("11", "Δολιοφθορές - Εμπρισμός"),
 )
  
 DHMOS_CHOISES = (
@@ -48,7 +49,7 @@ class BlogPost(models.Model):
     content=models.TextField()
     category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='Δεν γνωρίζω')
     dhmos = models.CharField(max_length=50, choices=DHMOS_CHOISES, default='Παράδειγμα Δήμου1')
-    image = models.ImageField(upload_to="profile_pics", blank=True, null=True)
+    image = models.ImageField(upload_to="media", blank=True, null=True)
     location = models.CharField(max_length=255, default="None")
     dateTime=models.DateTimeField(auto_now_add=True)
     

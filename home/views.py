@@ -49,12 +49,13 @@ def add_blogs(request):
         if form.is_valid():
             blogpost = form.save(commit=False)
             blogpost.author = request.user
+            print("----------------|" + settings.MEDIA_ROOT +  blogpost.image.url + "|----------------")
             blogpost.save()
             obj = form.instance
             alert = True
             
             blurOBJ = Blur()
-            absolute_url = '/home/spyros/blog-application-django (1)/home' + str(blogpost.image.url)
+            absolute_url = settings.MEDIA_ROOT + blogpost.image.url
             blurOBJ.run(absolute_url)
 
             #sendOBJ = Send(blogpost.category, blogpost.image, '+6987735000')
@@ -62,7 +63,7 @@ def add_blogs(request):
 
             sendemailOBJ = Send()
             sendemailOBJ.send_email(
-                "Φυσική Καταστροφή - φωτιές", 
+                blogpost.title, 
                 blogpost.content, 
                 "dhmosxyzpyrosbestikh@gmail.com")
 
@@ -77,7 +78,7 @@ def add_blogs(request):
 class UpdatePostView(UpdateView):
     model = BlogPost
     template_name = 'edit_blog_post.html'
-    fields = ['title', 'slug', 'content', 'image']
+    ields = ('title', 'content', 'image', 'location','category', 'dhmos')
 
 
 def user_profile(request, myid):
